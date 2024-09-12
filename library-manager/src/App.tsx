@@ -1,12 +1,13 @@
 import BookList from "./components/organisms/BookList";
-import AddBookForm from "./components/organisms/AddBookForm";
+import AddBookModal from "./components/molecules/AddBookModal";
+import { Container } from "@mui/material";
 
 function App() {
   return (
-    <>
+    <Container>
       <BookList />
-      <AddBookForm />
-    </>
+      <AddBookModal />
+    </Container>
   );
 }
 

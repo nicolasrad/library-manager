@@ -5,12 +5,13 @@ import { TextField, Button, Box, Grid, Typography } from "@mui/material";
 import { addBook } from "../../api";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
+import { generateRandomId } from "../../utils";
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   author: Yup.string().required("Author is required"),
-  genre: Yup.string().required("Genre is required"),
-  description: Yup.string().required("Description is required"),
+  genre: Yup.string().optional(),
+  description: Yup.string().optional(),
 });
 
 const AddBookForm: React.FC = () => {
@@ -27,7 +28,7 @@ const AddBookForm: React.FC = () => {
     onSubmit: async (values, { resetForm }) => {
       const newBook: BookI = {
         ...values,
-        id: Date.now().toString(),
+        id: generateRandomId(),
       };
 
       try {
@@ -42,16 +43,14 @@ const AddBookForm: React.FC = () => {
           }
         );
         resetForm();
-        alert("Book added successfully!");
       } catch (error) {
         console.error("Error adding book:", error);
-        alert("Error adding book");
       }
     },
   });
 
   return (
-    <Box sx={{ padding: 2 }}>
+    <Box>
       <Typography variant="h5" gutterBottom>
         Add a New Book
       </Typography>
@@ -100,7 +99,7 @@ const AddBookForm: React.FC = () => {
               name="description"
               label="Description"
               multiline
-              rows={4}
+              rows={2}
               value={formik.values.description}
               onChange={formik.handleChange}
               error={
