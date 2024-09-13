@@ -7,6 +7,8 @@ import {
   Grid,
   Box,
 } from "@mui/material";
+import EditBookModal from "../molecules/EditBookModal";
+import DeleteBookModal from "../molecules/DeleteBookModal";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
 
@@ -25,11 +27,23 @@ const BookList: React.FC = () => {
           </Typography>
           <List>
             {books.map((book: BookI) => (
-              <ListItem key={book.id} sx={styles.gridItem}>
-                <ListItemText
-                  primary={`${book.title} by ${book.author}`}
-                  secondary={`Genre: ${book.genre} - ${book.description}`}
-                />
+              <ListItem key={book.id}>
+                <Grid container spacing={2}>
+                  <Grid item xs={8}>
+                    <ListItemText
+                      primary={`${book.title} by ${book.author}`}
+                      secondary={`Genre: ${book.genre} - ${book.description}`}
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box sx={{ marginBottom: 1 }}>
+                      <EditBookModal book={book} />
+                    </Box>
+                    <Box>
+                      <DeleteBookModal bookId={book.id} />
+                    </Box>
+                  </Grid>
+                </Grid>
               </ListItem>
             ))}
           </List>
