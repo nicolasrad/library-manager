@@ -70,7 +70,7 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
           <DialogContentText id="alert-dialog-description">
             {text.deleteText}
           </DialogContentText>
-        </DialogContent>{" "}
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleModalState} color="secondary">
             {text.closeTheModal}
