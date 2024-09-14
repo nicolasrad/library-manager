@@ -10,6 +10,13 @@ import { BookI } from "../../types/book";
 import { deleteBook } from "../../api";
 import { useBooks } from "../../hooks/useBooks";
 
+const text = {
+  delete: "Delete",
+  closeTheModal: "Close the modal",
+  errorDeletingTheBook: "Error deleting the book:",
+  deleteTheBook: "Delete the book",
+};
+
 interface BookModalPropsI {
   bookId: number;
 }
@@ -20,7 +27,7 @@ const handleMutationCache = (books: BookI[], bookId: number) => {
 };
 
 const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { data: books, mutate } = useBooks();
 
   const handleModalState = () => {
@@ -40,7 +47,8 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
         }
       );
     } catch (error) {
-      console.error("Error adding book:", error);
+      alert(text.errorDeletingTheBook);
+      console.error(text.errorDeletingTheBook, error);
     }
     handleModalState();
   };
@@ -48,7 +56,7 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
   return (
     <Box>
       <Button color="error" onClick={handleModalState}>
-        Delete
+        {text.delete}
       </Button>
 
       <Dialog open={open} onClose={handleModalState} maxWidth="sm" fullWidth>
@@ -59,7 +67,7 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
         </DialogActions>
         <DialogContent>
           <Button onClick={handleModalState} color="secondary">
-            Close the modal
+            {text.closeTheModal}
           </Button>
           <Button
             onClick={() => {
@@ -67,7 +75,7 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
             }}
             color="secondary"
           >
-            Delete the book
+            {text.deleteTheBook}
           </Button>
         </DialogContent>
       </Dialog>

@@ -17,7 +17,6 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const MenuIcon = () => {
   return (
     <IconButton>
-      {/* Custom SVG for Menu Icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

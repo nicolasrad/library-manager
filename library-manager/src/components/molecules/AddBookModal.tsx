@@ -8,6 +8,10 @@ import {
 } from "@mui/material";
 import AddBookForm from "../organisms/AddBookForm";
 
+const text = {
+  addNewBook: "Add new book",
+};
+
 const AddBookModal: React.FC = () => {
   const [open, setOpen] = useState(false);
 
@@ -18,13 +22,12 @@ const AddBookModal: React.FC = () => {
   return (
     <Box>
       <Button variant="contained" color="primary" onClick={handleModalState}>
-        Add New Book
+        {text.addNewBook}
       </Button>
-
       <Dialog open={open} onClose={handleModalState} maxWidth="sm" fullWidth>
         <DialogActions>
           <Button onClick={handleModalState} color="secondary">
-            X
+            x
           </Button>
         </DialogActions>
         <DialogContent>

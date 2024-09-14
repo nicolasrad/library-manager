@@ -7,6 +7,11 @@ import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
 import { generateRandomId } from "../../utils";
 
+const text = {
+  errorAddingBook: "Error adding book",
+  successAddingBook: "You successfully added a book",
+};
+
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   author: Yup.string().required("Author is required"),
@@ -42,9 +47,11 @@ const AddBookForm: React.FC = () => {
             rollbackOnError: true,
           }
         );
+        alert(text.successAddingBook); //@todo: refactor this
         resetForm();
       } catch (error) {
-        console.error("Error adding book:", error);
+        alert(text.errorAddingBook);
+        console.error(text.errorAddingBook, error);
       }
     },
   });

@@ -9,6 +9,10 @@ import {
 import EditBookForm from "../organisms/EditbookForm";
 import { BookI } from "../../types/book";
 
+const text = {
+  edit: "Edit",
+};
+
 interface BookModalPropsI {
   book: BookI;
 }
@@ -22,7 +26,7 @@ const EditBookModal = ({ book }: BookModalPropsI) => {
   return (
     <Box>
       <Button color="primary" onClick={handleModalState}>
-        Edit
+        {text.edit}
       </Button>
 
       <Dialog open={open} onClose={handleModalState} maxWidth="sm" fullWidth>

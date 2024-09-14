@@ -10,6 +10,11 @@ import EditBookModal from "./EditBookModal";
 import DeleteBookModal from "./DeleteBookModal";
 import { getRandomImage } from "../../utils";
 import { BookI } from "../../types/book";
+
+const text = {
+  genre: "Genre",
+};
+
 interface ImageCardProps {
   book: BookI;
 }
@@ -37,7 +42,7 @@ export default function ImageCard({ book }: ImageCardProps) {
             {`${title} by ${author}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`Genre - ${genre}`}
+            {`${text.genre} - ${genre}`}
           </Typography>
         </CardContent>
         <CardActions>

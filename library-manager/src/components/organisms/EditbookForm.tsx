@@ -5,13 +5,19 @@ import { updateBook } from "../../api";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
 
+const text = {
+  errorUpdatingBook: "Error updating book",
+  editBook: "Edit book",
+  updateBook: "Update book",
+};
+
 interface EditBookFormPropsI {
   book: BookI;
   onClose: () => void;
 }
 
 const validationSchema = Yup.object({
-  title: Yup.string().required("Title is required"),
+  title: Yup.string().required("Title is required"), //@todo: add validation strings to text
   author: Yup.string().required("Author is required"),
   genre: Yup.string().optional(),
   description: Yup.string().optional(),
@@ -42,7 +48,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
         ...book,
         ...values,
       };
-      console.log(book, "mybook");
+
       try {
         await updateBook(book.id, updatedBook);
 
@@ -57,7 +63,8 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
 
         onClose();
       } catch (error) {
-        console.error("Error updating book:", error);
+        alert(text.errorUpdatingBook);
+        console.error(text.errorUpdatingBook, error);
       }
     },
   });
@@ -65,7 +72,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
   return (
     <Box sx={{ padding: 2 }}>
       <Typography variant="h5" gutterBottom>
-        Edit Book
+        {text.editBook}
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={2}>
@@ -125,7 +132,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
           </Grid>
           <Grid item xs={12}>
             <Button color="primary" variant="contained" fullWidth type="submit">
-              Update Book
+              {text.updateBook}
             </Button>
           </Grid>
         </Grid>
