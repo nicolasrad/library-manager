@@ -4,14 +4,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
 } from "@mui/material";
-import { getRandomImage } from "../../utils";
-import { BookI } from "../../types/book";
 import EditBookModal from "./EditBookModal";
 import DeleteBookModal from "./DeleteBookModal";
-
+import { getRandomImage } from "../../utils";
+import { BookI } from "../../types/book";
 interface ImageCardProps {
   book: BookI;
 }
@@ -24,6 +22,7 @@ export default function ImageCard({ book }: ImageCardProps) {
     genre = "Uncategorised",
     description = "Not available",
   } = book;
+
   return (
     <Box display="flex" justifyContent="center">
       <Card sx={{ maxHeight: 400, maxWidth: 200 }}>
@@ -40,11 +39,8 @@ export default function ImageCard({ book }: ImageCardProps) {
           <Typography variant="body2" color="text.secondary">
             {`Genre - ${genre}`}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {`Description - ${description ?? "Not available"}`}
-          </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions>
           <EditBookModal book={book} />
           <DeleteBookModal bookId={id} />
         </CardActions>

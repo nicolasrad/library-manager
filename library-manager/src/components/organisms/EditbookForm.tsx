@@ -13,8 +13,8 @@ interface EditBookFormPropsI {
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   author: Yup.string().required("Author is required"),
-  genre: Yup.string().required("Genre is required"),
-  description: Yup.string().required("Description is required"),
+  genre: Yup.string().optional(),
+  description: Yup.string().optional(),
 });
 
 const mutateCacheMechanism = (

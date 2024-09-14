@@ -47,7 +47,7 @@ const DeleteBookModal = ({ bookId }: BookModalPropsI) => {
 
   return (
     <Box>
-      <Button variant="contained" color="error" onClick={handleModalState}>
+      <Button color="error" onClick={handleModalState}>
         Delete
       </Button>
 

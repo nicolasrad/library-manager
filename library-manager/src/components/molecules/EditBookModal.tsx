@@ -21,7 +21,7 @@ const EditBookModal = ({ book }: BookModalPropsI) => {
 
   return (
     <Box>
-      <Button variant="contained" color="primary" onClick={handleModalState}>
+      <Button color="primary" onClick={handleModalState}>
         Edit
       </Button>
 
@@ -32,7 +32,7 @@ const EditBookModal = ({ book }: BookModalPropsI) => {
           </Button>
         </DialogActions>
         <DialogContent>
-          <EditBookForm book={book} onClose={() => handleModalState()} />
+          <EditBookForm book={book} onClose={handleModalState} />
         </DialogContent>
       </Dialog>
     </Box>
