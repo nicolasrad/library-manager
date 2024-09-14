@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Grid,
-  Box,
-} from "@mui/material";
-import EditBookModal from "../molecules/EditBookModal";
-import DeleteBookModal from "../molecules/DeleteBookModal";
+import { Typography, Grid, Box } from "@mui/material";
+import ImageCard from "../molecules/ImageCard";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
 
@@ -20,51 +12,24 @@ const BookList: React.FC = () => {
 
   return (
     <Box sx={styles.container}>
-      <Grid container justifyContent="center">
-        <Grid item xs={12} sm={10} md={8}>
-          <Typography variant="h5" sx={styles.heading}>
-            Book List
-          </Typography>
-          <List>
-            {books.map((book: BookI) => (
-              <ListItem key={book.id}>
-                <Grid container spacing={2}>
-                  <Grid item xs={8}>
-                    <ListItemText
-                      primary={`${book.title} by ${book.author}`}
-                      secondary={`Genre: ${book.genre} - ${book.description}`}
-                    />
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Box sx={{ marginBottom: 1 }}>
-                      <EditBookModal book={book} />
-                    </Box>
-                    <Box>
-                      <DeleteBookModal bookId={book.id} />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
+      <Typography variant="h5" sx={styles.heading}>
+        Book List
+      </Typography>
+
+      <Grid container spacing={2}>
+        {books.map((book: BookI) => (
+          <Grid item key={book.id} xs={12} sm={6} md={4} lg={3}>
+            <ImageCard book={book} />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
 };
 
 const styles = {
-  container: {
-    padding: 2,
-  },
-  gridItem: {
-    padding: 2,
-    borderBottom: "1px solid #ddd",
-  },
-  heading: {
-    textAlign: "center",
-    marginBottom: 3,
-  },
+  container: { padding: 2 },
+  heading: { marginBottom: 2, textAlign: "center" },
 };
 
 export default BookList;
