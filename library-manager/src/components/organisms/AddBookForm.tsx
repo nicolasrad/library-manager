@@ -5,7 +5,7 @@ import { TextField, Button, Box, Grid, Typography } from "@mui/material";
 import { addBook } from "../../api";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
-import { generateRandomId } from "../../utils";
+import { generateRandomId, getRandomImage } from "../../utils";
 
 const text = {
   errorAddingBook: "Error adding book",
@@ -34,6 +34,7 @@ const AddBookForm: React.FC = () => {
       const newBook: BookI = {
         ...values,
         id: generateRandomId(),
+        imageUrl: getRandomImage(),
       };
 
       try {

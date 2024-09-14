@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import EditBookModal from "./EditBookModal";
 import DeleteBookModal from "./DeleteBookModal";
-import { getRandomImage } from "../../utils";
 import { BookI } from "../../types/book";
 
 const text = {
@@ -26,17 +25,13 @@ export default function ImageCard({ book }: ImageCardProps) {
     author,
     genre = "Uncategorised",
     description = "Not available",
+    imageUrl,
   } = book;
 
   return (
     <Box display="flex" justifyContent="center">
       <Card sx={{ maxHeight: 400, maxWidth: 200 }}>
-        <CardMedia
-          component="img"
-          height="250"
-          width="50"
-          image={getRandomImage()}
-        />
+        <CardMedia component="img" height="250" width="50" image={imageUrl} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {`${title} by ${author}`}

@@ -1,5 +1,4 @@
 import BookList from "./components/organisms/BookList";
-import AddBookModal from "./components/molecules/AddBookModal";
 import { Container } from "@mui/material";
 import ResponsiveAppBar from "./components/molecules/Navbar";
 
@@ -9,7 +8,6 @@ function App() {
       <ResponsiveAppBar />
       <Container>
         <BookList />
-        <AddBookModal />
       </Container>
     </>
   );

@@ -4,4 +4,5 @@ export interface BookI {
   author: string;
   genre?: string;
   description?: string;
+  imageUrl?: string;
 }
