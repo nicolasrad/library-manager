@@ -21,11 +21,11 @@ const BookList: React.FC = () => {
   return (
     <Box sx={styles.container}>
       <Header />
-      <Grid container spacing={1}>
-        {books.map((book: BookI) => (
+      <Grid container spacing={2}>
+        {books.map((book: BookI, index) => (
           <Grid
             item
-            key={book.id}
+            key={book.id + index}
             xs={12}
             sm={4}
             md={3}
@@ -37,7 +37,7 @@ const BookList: React.FC = () => {
         ))}
       </Grid>
       <Box sx={styles.infoBanner}>
-        <Typography variant="h6" sx={{ flexGrow: 1, marginRight: 3 }}>
+        <Typography variant="h6" sx={styles.infoBannerText}>
           {text.challengeAccepted}
         </Typography>
       </Box>
@@ -60,6 +60,7 @@ const styles = {
     borderRadius: 2,
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
   },
+  infoBannerText: { flexGrow: 1, marginRight: 3 },
 };
 
 export default BookList;

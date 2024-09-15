@@ -42,8 +42,8 @@ const CollapsibleTable: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {DUMMY_DATA.map((book, _) => (
-            <CollapsibleRow book={book} />
+          {DUMMY_DATA.map((book, index) => (
+            <CollapsibleRow book={book} key={book.id + index} />
           ))}
         </TableBody>
       </Table>
