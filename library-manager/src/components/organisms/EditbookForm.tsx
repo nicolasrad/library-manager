@@ -4,22 +4,26 @@ import { TextField, Button, Box, Grid, Typography } from "@mui/material";
 import { updateBook } from "../../api";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
+import { useModal } from "../../context/BaseModal";
 
 const text = {
   errorUpdatingBook: "Error updating book",
   editBook: "Edit book",
   updateBook: "Update book",
+  authorLabel: "Author*",
+  titleLabel: "Title*",
+  genreLabel: "Genre*",
+  descriptionLabel: "Description",
 };
 
 interface EditBookFormPropsI {
   book: BookI;
-  onClose: () => void;
 }
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"), //@todo: add validation strings to text
   author: Yup.string().required("Author is required"),
-  genre: Yup.string().optional(),
+  genre: Yup.string().required("Genre is required"),
   description: Yup.string().optional(),
 });
 
@@ -32,8 +36,9 @@ const mutateCacheMechanism = (
   return books.map((book) => (book.id === currentBook.id ? updatedBook : book));
 };
 
-const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
+const EditBookForm = ({ book }: EditBookFormPropsI) => {
   const { mutate } = useBooks();
+  const { toggleModal: closeModal } = useModal();
 
   const formik = useFormik({
     initialValues: {
@@ -60,8 +65,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
             rollbackOnError: true,
           }
         );
-
-        onClose();
+        closeModal();
       } catch (error) {
         alert(text.errorUpdatingBook);
         console.error(text.errorUpdatingBook, error);
@@ -81,7 +85,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
               fullWidth
               id="title"
               name="title"
-              label="Book Title"
+              label={text.titleLabel}
               value={formik.values.title}
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
@@ -93,7 +97,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
               fullWidth
               id="author"
               name="author"
-              label="Author"
+              label={text.authorLabel}
               value={formik.values.author}
               onChange={formik.handleChange}
               error={formik.touched.author && Boolean(formik.errors.author)}
@@ -105,7 +109,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
               fullWidth
               id="genre"
               name="genre"
-              label="Genre"
+              label={text.genreLabel}
               value={formik.values.genre}
               onChange={formik.handleChange}
               error={formik.touched.genre && Boolean(formik.errors.genre)}
@@ -117,7 +121,7 @@ const EditBookForm = ({ book, onClose }: EditBookFormPropsI) => {
               fullWidth
               id="description"
               name="description"
-              label="Description"
+              label={text.descriptionLabel}
               multiline
               rows={4}
               value={formik.values.description}

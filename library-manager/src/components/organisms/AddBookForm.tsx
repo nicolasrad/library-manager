@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TextField, Button, Box, Grid, Typography } from "@mui/material";
 import { addBook } from "../../api";
+import { useModal } from "../../context/BaseModal";
 import { useBooks } from "../../hooks/useBooks";
 import { BookI } from "../../types/book";
 import { generateRandomId, getRandomImage } from "../../utils";
@@ -10,17 +11,24 @@ import { generateRandomId, getRandomImage } from "../../utils";
 const text = {
   errorAddingBook: "Error adding book",
   successAddingBook: "You successfully added a book",
+  addBook: "Add book",
+  addANewBook: "Add a new book",
+  authorLabel: "Author*",
+  titleLabel: "Title*",
+  genreLabel: "Genre*",
+  descriptionLabel: "Description",
 };
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   author: Yup.string().required("Author is required"),
-  genre: Yup.string().optional(),
+  genre: Yup.string().required("Genre is required"),
   description: Yup.string().optional(),
 });
 
 const AddBookForm: React.FC = () => {
   const { data: books, mutate } = useBooks();
+  const { toggleModal: closeModal } = useModal();
 
   const formik = useFormik({
     initialValues: {
@@ -50,6 +58,7 @@ const AddBookForm: React.FC = () => {
         );
         alert(text.successAddingBook); //@todo: refactor this
         resetForm();
+        closeModal();
       } catch (error) {
         alert(text.errorAddingBook);
         console.error(text.errorAddingBook, error);
@@ -60,7 +69,7 @@ const AddBookForm: React.FC = () => {
   return (
     <Box>
       <Typography variant="h5" gutterBottom>
-        Add a New Book
+        {text.addANewBook}
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={2}>
@@ -69,7 +78,7 @@ const AddBookForm: React.FC = () => {
               fullWidth
               id="title"
               name="title"
-              label="Book Title"
+              label={text.titleLabel}
               value={formik.values.title}
               onChange={formik.handleChange}
               error={formik.touched.title && Boolean(formik.errors.title)}
@@ -81,7 +90,7 @@ const AddBookForm: React.FC = () => {
               fullWidth
               id="author"
               name="author"
-              label="Author"
+              label={text.authorLabel}
               value={formik.values.author}
               onChange={formik.handleChange}
               error={formik.touched.author && Boolean(formik.errors.author)}
@@ -93,7 +102,7 @@ const AddBookForm: React.FC = () => {
               fullWidth
               id="genre"
               name="genre"
-              label="Genre"
+              label={text.genreLabel}
               value={formik.values.genre}
               onChange={formik.handleChange}
               error={formik.touched.genre && Boolean(formik.errors.genre)}
@@ -105,7 +114,7 @@ const AddBookForm: React.FC = () => {
               fullWidth
               id="description"
               name="description"
-              label="Description"
+              label={text.descriptionLabel}
               multiline
               rows={2}
               value={formik.values.description}
@@ -120,7 +129,7 @@ const AddBookForm: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Button color="primary" variant="contained" fullWidth type="submit">
-              Add Book
+              {text.addBook}
             </Button>
           </Grid>
         </Grid>

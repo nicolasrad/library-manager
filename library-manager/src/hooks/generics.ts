@@ -11,7 +11,6 @@ export function useGenericSWR<T>(
     error,
     mutate,
   } = useSWR<T>(endpoint, async (url: string) => {
-    console.log(url, "myurl");
     const response = await axios.get<T>(url);
     return response.data;
   });
