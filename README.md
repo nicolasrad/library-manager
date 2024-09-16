@@ -18,4 +18,4 @@ _How's the UI?_ you ask. Well... let’s just say, _"Not great, not terrible."_ 
 
 ## 🧩 **The Rest?**
 
-There’s another README hiding in the `frontend` folder. It holds the key to everything.
+There’s another README hiding in the `library-manager` folder. It holds the key to everything.
