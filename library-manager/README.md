@@ -47,6 +47,10 @@ The project structure is organized as follows:
 ├── /src
 │   ├── /components     # React components (e.g., BookList, AddBookForm)
 │   ├── /context        # Context providers for app-wide state (e.g., ModalContext)
+│   ├── /constants      # Constants that can be used globaly
+│   ├── /hooks          #  Custom React hooks for reusable logic
+│   ├── /types          # Type definitions (globally)
+│   ├── /utils          # Utility/helper methods.
 │   ├── /tests          # Playwright E2E test cases
 │   ├── App.tsx         # Main app component
 │   ├── index.tsx       # Entry point for React
@@ -68,9 +72,8 @@ The project structure is organized as follows:
 - **React**: A JavaScript library for building user interfaces.
 - **TypeScript**: For type safety and better development experience.
 - **Material UI (MUI)**: For responsive and modern UI components.
+- **SWR**: A React data-fetching library that provides caching, revalidation, and real-time data synchronization, ensuring an efficient and optimized data flow.
 - **Playwright**: For E2E testing to ensure the application works as expected in real user scenarios.
-
-Tests run perfectly with NodeJs version 20.17.0
 
 ## **E2E Testing**
 
@@ -95,3 +98,5 @@ We use **Playwright** for end-to-end testing to ensure the application behaves a
    - Adding a new book.
    - Editing an existing book.
    - Deleting a book.
+
+Tests run perfectly with NodeJs version 20.17.0
