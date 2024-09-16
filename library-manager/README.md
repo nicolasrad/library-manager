@@ -37,6 +37,14 @@ Follow the steps below to set up and run the application locally.
 
    The app should now be running at [http://localhost:3000](http://localhost:3000).
 
+   Also don't forget to run the mocked BE
+
+   ```bash
+   cd ..
+   cd books_library_app_mock_server
+   npm run start
+   ```
+
 ## **Folder Structure**
 
 The project structure is organized as follows:
