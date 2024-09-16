@@ -7,7 +7,7 @@ Backend? Clean and minimal. The frontend? Let’s just say it has a bit more goi
 1. **Step into the `library-manager/` folder**. That’s where your answers are.
 2. Run the ritual:
    ```bash
-   yarn install
+   yarn
    yarn start
    ```
 3. **Explore** the app. Things get interesting fast.
