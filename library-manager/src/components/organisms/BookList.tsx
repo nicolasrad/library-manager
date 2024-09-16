@@ -13,10 +13,10 @@ const text = {
 };
 
 const BookList: React.FC = () => {
-  const { data: books, isLoading, isError, mutate } = useBooks();
+  const { data: books, isLoading, isError } = useBooks();
 
   if (isLoading) return <BookSkeleton />;
-  if (isError) return <ErrorFetchingBooks onRetry={mutate} />;
+  if (isError) return <ErrorFetchingBooks />;
 
   return (
     <Box sx={styles.container}>
